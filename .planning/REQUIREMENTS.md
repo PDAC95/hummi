@@ -305,29 +305,187 @@ Explicitly excluded for v1. Documented to prevent scope creep.
 
 ## Traceability
 
-Which phases cover which requirements. Updated during roadmap creation.
+Per-REQ-ID mapping to phases. Every v1 requirement maps to exactly one phase. Cross-cutting items (SEC, TEST, PLAT, CMP) are placed in the phase where their foundational policy lives; they recur as living requirements in later phases by virtue of "every new table gets RLS," etc.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| INFRA-01 through INFRA-13 | Phase 1 | Pending |
-| AUTH-01 through AUTH-11 | Phase 2 | Pending |
-| GEO-01 through GEO-05 | Phase 3 | Pending |
-| PROP-01 through PROP-10 | Phase 3 | Pending |
-| SVC-01 through SVC-12 | Phase 4 | Pending |
-| PHONE-01 through PHONE-06 | Phase 5 | Pending |
-| BOOK-01 through BOOK-15 | Phase 6 | Pending |
-| DASH-01 through DASH-08 | Phase 7 | Pending |
-| PKG-01 through PKG-08 | Phase 8 | Pending |
-| SUB-01 through SUB-12 | Phase 9 | Pending |
-| ADM-01 through ADM-15 | Phase 10 | Pending |
-| ADM-16 through ADM-20 | Phase 12 | Pending |
-| NOTIF-01 through NOTIF-11 | Phase 11 | Pending |
-| CXL-01 through CXL-10 | Phase 11 | Pending |
-| REV-01 through REV-05 | Phase 11 | Pending |
-| SEC-01 through SEC-09 | Cross-cutting (Phase 1 + every later phase) | Pending |
-| CMP-01 through CMP-08 | Phase 12 | Pending |
-| PLAT-01 through PLAT-07 | Cross-cutting (Phase 1 + Phase 12) | Pending |
-| TEST-01 through TEST-07 | Cross-cutting (Phase 1 + every later phase) | Pending |
+| INFRA-01 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Pending |
+| INFRA-04 | Phase 1 | Pending |
+| INFRA-05 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Pending |
+| INFRA-07 | Phase 1 | Pending |
+| INFRA-08 | Phase 1 | Pending |
+| INFRA-09 | Phase 1 | Pending |
+| INFRA-10 | Phase 1 | Pending |
+| INFRA-11 | Phase 1 | Pending |
+| INFRA-12 | Phase 1 | Pending |
+| INFRA-13 | Phase 1 | Pending |
+| AUTH-01 | Phase 2 | Pending |
+| AUTH-02 | Phase 2 | Pending |
+| AUTH-03 | Phase 2 | Pending |
+| AUTH-04 | Phase 2 | Pending |
+| AUTH-05 | Phase 2 | Pending |
+| AUTH-06 | Phase 2 | Pending |
+| AUTH-07 | Phase 2 | Pending |
+| AUTH-08 | Phase 2 | Pending |
+| AUTH-09 | Phase 2 | Pending |
+| AUTH-10 | Phase 2 | Pending |
+| AUTH-11 | Phase 2 | Pending |
+| PHONE-01 | Phase 5 | Pending |
+| PHONE-02 | Phase 5 | Pending |
+| PHONE-03 | Phase 5 | Pending |
+| PHONE-04 | Phase 5 | Pending |
+| PHONE-05 | Phase 5 | Pending |
+| PHONE-06 | Phase 5 | Pending |
+| PROP-01 | Phase 3 | Pending |
+| PROP-02 | Phase 3 | Pending |
+| PROP-03 | Phase 3 | Pending |
+| PROP-04 | Phase 3 | Pending |
+| PROP-05 | Phase 3 | Pending |
+| PROP-06 | Phase 3 | Pending |
+| PROP-07 | Phase 3 | Pending |
+| PROP-08 | Phase 3 | Pending |
+| PROP-09 | Phase 3 | Pending |
+| PROP-10 | Phase 3 | Pending |
+| SVC-01 | Phase 4 | Pending |
+| SVC-02 | Phase 4 | Pending |
+| SVC-03 | Phase 4 | Pending |
+| SVC-04 | Phase 4 | Pending |
+| SVC-05 | Phase 4 | Pending |
+| SVC-06 | Phase 4 | Pending |
+| SVC-07 | Phase 4 | Pending |
+| SVC-08 | Phase 4 | Pending |
+| SVC-09 | Phase 4 | Pending |
+| SVC-10 | Phase 4 | Pending |
+| SVC-11 | Phase 4 | Pending |
+| SVC-12 | Phase 4 | Pending |
+| BOOK-01 | Phase 6 | Pending |
+| BOOK-02 | Phase 6 | Pending |
+| BOOK-03 | Phase 6 | Pending |
+| BOOK-04 | Phase 6 | Pending |
+| BOOK-05 | Phase 6 | Pending |
+| BOOK-06 | Phase 6 | Pending |
+| BOOK-07 | Phase 6 | Pending |
+| BOOK-08 | Phase 6 | Pending |
+| BOOK-09 | Phase 6 | Pending |
+| BOOK-10 | Phase 6 | Pending |
+| BOOK-11 | Phase 6 | Pending |
+| BOOK-12 | Phase 6 | Pending |
+| BOOK-13 | Phase 6 | Pending |
+| BOOK-14 | Phase 6 | Pending |
+| BOOK-15 | Phase 6 | Pending |
+| DASH-01 | Phase 7 | Pending |
+| DASH-02 | Phase 7 | Pending |
+| DASH-03 | Phase 7 | Pending |
+| DASH-04 | Phase 7 | Pending |
+| DASH-05 | Phase 7 | Pending |
+| DASH-06 | Phase 7 | Pending |
+| DASH-07 | Phase 7 | Pending |
+| DASH-08 | Phase 7 | Pending |
+| PKG-01 | Phase 8 | Pending |
+| PKG-02 | Phase 8 | Pending |
+| PKG-03 | Phase 8 | Pending |
+| PKG-04 | Phase 8 | Pending |
+| PKG-05 | Phase 8 | Pending |
+| PKG-06 | Phase 8 | Pending |
+| PKG-07 | Phase 8 | Pending |
+| PKG-08 | Phase 8 | Pending |
+| SUB-01 | Phase 9 | Pending |
+| SUB-02 | Phase 9 | Pending |
+| SUB-03 | Phase 9 | Pending |
+| SUB-04 | Phase 9 | Pending |
+| SUB-05 | Phase 9 | Pending |
+| SUB-06 | Phase 9 | Pending |
+| SUB-07 | Phase 9 | Pending |
+| SUB-08 | Phase 9 | Pending |
+| SUB-09 | Phase 9 | Pending |
+| SUB-10 | Phase 9 | Pending |
+| SUB-11 | Phase 9 | Pending |
+| SUB-12 | Phase 9 | Pending |
+| CXL-01 | Phase 11 | Pending |
+| CXL-02 | Phase 11 | Pending |
+| CXL-03 | Phase 11 | Pending |
+| CXL-04 | Phase 11 | Pending |
+| CXL-05 | Phase 11 | Pending |
+| CXL-06 | Phase 11 | Pending |
+| CXL-07 | Phase 11 | Pending |
+| CXL-08 | Phase 11 | Pending |
+| CXL-09 | Phase 11 | Pending |
+| CXL-10 | Phase 11 | Pending |
+| NOTIF-01 | Phase 11 | Pending |
+| NOTIF-02 | Phase 6 | Pending |
+| NOTIF-03 | Phase 11 | Pending |
+| NOTIF-04 | Phase 10 | Pending |
+| NOTIF-05 | Phase 11 | Pending |
+| NOTIF-06 | Phase 11 | Pending |
+| NOTIF-07 | Phase 11 | Pending |
+| NOTIF-08 | Phase 6 | Pending |
+| NOTIF-09 | Phase 10 | Pending |
+| NOTIF-10 | Phase 11 | Pending |
+| NOTIF-11 | Phase 11 | Pending |
+| GEO-01 | Phase 3 | Pending |
+| GEO-02 | Phase 3 | Pending |
+| GEO-03 | Phase 3 | Pending |
+| GEO-04 | Phase 3 | Pending |
+| GEO-05 | Phase 3 | Pending |
+| REV-01 | Phase 11 | Pending |
+| REV-02 | Phase 11 | Pending |
+| REV-03 | Phase 11 | Pending |
+| REV-04 | Phase 11 | Pending |
+| REV-05 | Phase 11 | Pending |
+| ADM-01 | Phase 10 | Pending |
+| ADM-02 | Phase 10 | Pending |
+| ADM-03 | Phase 10 | Pending |
+| ADM-04 | Phase 10 | Pending |
+| ADM-05 | Phase 10 | Pending |
+| ADM-06 | Phase 10 | Pending |
+| ADM-07 | Phase 10 | Pending |
+| ADM-08 | Phase 10 | Pending |
+| ADM-09 | Phase 10 | Pending |
+| ADM-10 | Phase 10 | Pending |
+| ADM-11 | Phase 10 | Pending |
+| ADM-12 | Phase 10 | Pending |
+| ADM-13 | Phase 10 | Pending |
+| ADM-14 | Phase 10 | Pending |
+| ADM-15 | Phase 10 | Pending |
+| ADM-16 | Phase 12 | Pending |
+| ADM-17 | Phase 12 | Pending |
+| ADM-18 | Phase 12 | Pending |
+| ADM-19 | Phase 12 | Pending |
+| ADM-20 | Phase 12 | Pending |
+| SEC-01 | Phase 2 (policy; recurs every new table) | Pending |
+| SEC-02 | Phase 2 (policy; recurs every new table) | Pending |
+| SEC-03 | Phase 2 (policy; recurs every admin policy) | Pending |
+| SEC-04 | Phase 2 (CI test, recurs per migration) | Pending |
+| SEC-05 | Phase 6 (recurs every Stripe Edge Function) | Pending |
+| SEC-06 | Phase 6 (recurs every webhook event type) | Pending |
+| SEC-07 | Phase 1 (foundational guardrail) | Pending |
+| SEC-08 | Phase 6 (policy; recurs every business RPC) | Pending |
+| SEC-09 | Phase 3 (policy; recurs for any sensitive column) | Pending |
+| CMP-01 | Phase 12 | Pending |
+| CMP-02 | Phase 12 | Pending |
+| CMP-03 | Phase 12 | Pending |
+| CMP-04 | Phase 12 | Pending |
+| CMP-05 | Phase 9 | Pending |
+| CMP-06 | Phase 12 | Pending |
+| CMP-07 | Phase 12 (registration kicked off in Phase 1 via INFRA-13) | Pending |
+| CMP-08 | Phase 12 | Pending |
+| PLAT-01 | Phase 12 (responsive audit; mobile-first throughout) | Pending |
+| PLAT-02 | Phase 10 (admin lazy-load is the largest split) | Pending |
+| PLAT-03 | Phase 7 (admin chunk verified absent from customer bundle) | Pending |
+| PLAT-04 | Phase 7 (Stripe.js deferred from non-payment routes) | Pending |
+| PLAT-05 | Phase 12 (final Lighthouse pass) | Pending |
+| PLAT-06 | Phase 12 (final a11y pass) | Pending |
+| PLAT-07 | Phase 1 (Sentry installed; recurs per Edge Function) | Pending |
+| TEST-01 | Phase 12 (Vitest scaffolded in Phase 1, broadened here) | Pending |
+| TEST-02 | Phase 12 (MSW scaffolded in Phase 1, broadened here) | Pending |
+| TEST-03 | Phase 6 (booking E2E) | Pending |
+| TEST-04 | Phase 11 (subscription E2E with renewal sim) | Pending |
+| TEST-05 | Phase 2 (RLS leak test established with first RLS table) | Pending |
+| TEST-06 | Phase 11 (DST transition test for reminder cron) | Pending |
+| TEST-07 | Phase 6 (webhook idempotency test) | Pending |
 
 **Coverage:**
 - v1 requirements: 145 total
@@ -336,4 +494,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-05-14*
-*Last updated: 2026-05-14 after research synthesis + scope expansion to residential + commercial*
+*Last updated: 2026-05-14 with detailed per-REQ-ID traceability after roadmap creation*
