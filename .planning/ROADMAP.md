@@ -42,7 +42,14 @@ Cross-cutting items (SEC-*, TEST-*, PLAT-*, CMP-*) have a primary home for their
   3. `npm audit` reports zero high/critical findings; gitleaks history scan has been run once and any exposed keys rotated
   4. Twilio toll-free CSCA verification, Stripe Canadian bank verification, Resend SPF/DKIM/DMARC warmup, and CRA HST registration are all in flight with documented start dates
   5. Sentry captures a synthetic error from both the SPA and a sample Edge Function, viewable in the dashboard
-**Plans**: TBD
+**Plans**: 7 plans
+  - [ ] 01-01-PLAN.md — Founder provisions Supabase staging+prod and Sentry org/projects (captures credentials)
+  - [ ] 01-02-PLAN.md — Initialize Supabase locally, write + apply initial migration (extensions + schemas)
+  - [ ] 01-03-PLAN.md — GitHub Actions workflows (PR checks, deploy-staging, deploy-prod, gitleaks) + secret-grep script
+  - [ ] 01-04-PLAN.md — Sentry instrumentation for SPA (React 19) and Edge Functions (Deno)
+  - [ ] 01-05-PLAN.md — npm audit cleanup (12 vulns) + gitleaks pre-commit hook + history scan
+  - [ ] 01-06-PLAN.md — Vendor applications: Twilio toll-free, Stripe Canada, Resend domain, CRA HST
+  - [ ] 01-07-PLAN.md — Red-test verification (CI blocks bad PR) + synthetic Sentry events + phase verification doc
 
 ### Phase 2: Auth & Profiles
 **Goal**: Customers can create an account (personal or business), sign in via email/password or Google OAuth, and the platform has a strict, server-trusted admin role available for later phases.
@@ -179,7 +186,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Long-Lead Vendors | 0/TBD | Not started | - |
+| 1. Foundation & Long-Lead Vendors | 0/7 | Not started | - |
 | 2. Auth & Profiles | 0/TBD | Not started | - |
 | 3. Coverage & Properties | 0/TBD | Not started | - |
 | 4. Service Catalog & Pricing Engine | 0/TBD | Not started | - |
