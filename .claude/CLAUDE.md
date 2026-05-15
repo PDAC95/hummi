@@ -23,3 +23,17 @@ Web app de servicios de limpieza para Kitchener-Waterloo-Cambridge + Guelph (Ont
 - Mantener la separación `pages/` vs `sections/` del template: las páginas solo ensamblan secciones.
 - TypeScript estricto.
 - No agregar comentarios obvios; solo cuando el "porqué" no se ve en el código.
+
+## Workflow de Git (GitHub Flow — branch por plan)
+- **`main` siempre verde**: nunca commits directos, todo entra vía PR con CI pasando.
+- **Una branch por plan de GSD**, no por fase completa. Naming: `phase-XX/YY-slug` (ej: `phase-01/03-ci-guardrails`, `phase-01/04-sentry`).
+- **Un PR = un cambio coherente que puede mergear solo**. Si el PR no se puede revisar en <15 min, está demasiado grande — divídelo.
+- **Flujo por plan**:
+  1. `git checkout -b phase-XX/YY-slug` desde `main` actualizada
+  2. Trabajar el plan, commits atómicos
+  3. Push → abrir PR a `main` → CI corre los 5 checks
+  4. Merge cuando CI pasa Y el plan verifica su `<done>`
+  5. Borrar la branch local y remota
+- **Respetar las dependencias entre planes**: si el plan B depende de A (vía `depends_on`), no abras la branch de B hasta que A esté mergeada en `main`.
+- **Reverts vía PR revert**, nunca `git push --force` a `main`. Branch protection lo bloquea de cualquier forma.
+- **Commits**: mensaje en inglés técnico, formato Conventional Commits (`feat:`, `fix:`, `docs:`, `chore:`, `refactor:`, `test:`). El cuerpo del PR puede ir en español.
