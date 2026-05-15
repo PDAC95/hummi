@@ -50,3 +50,6 @@ lerna-debug.log*
 Thumbs.db
 ehthumbs.db
 desktop.ini
+
+# Phase 1 captured credentials — never commit
+.planning/phases/*/account-credentials.md
