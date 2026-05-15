@@ -48,7 +48,7 @@ Cross-cutting items (SEC-*, TEST-*, PLAT-*, CMP-*) have a primary home for their
   - [ ] 01-03-PLAN.md — GitHub Actions workflows (PR checks, deploy-staging, deploy-prod, gitleaks) + secret-grep script
   - [ ] 01-04-PLAN.md — Sentry instrumentation for SPA (React 19) and Edge Functions (Deno)
   - [ ] 01-05-PLAN.md — npm audit cleanup (12 vulns) + gitleaks pre-commit hook + history scan
-  - [ ] 01-06-PLAN.md — Vendor applications: Twilio toll-free, Stripe Canada, Resend domain, CRA HST
+  - [x] 01-06-PLAN.md — Vendor applications: Twilio toll-free, Stripe Canada, Resend domain, CRA HST _(docs shipped 2026-05-15; founder owns 4 submissions)_
   - [ ] 01-07-PLAN.md — Red-test verification (CI blocks bad PR) + synthetic Sentry events + phase verification doc
 
 ### Phase 2: Auth & Profiles
