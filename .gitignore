@@ -51,6 +51,9 @@ Thumbs.db
 ehthumbs.db
 desktop.ini
 
+# Phase 1 captured credentials — never commit
+.planning/phases/*/account-credentials.md
+
 # Vendor PII (SIN on CRA forms, etc.) — never commit
 .planning/vendors/cra-hst/personal-info.*
 .planning/vendors/*/secrets.*
