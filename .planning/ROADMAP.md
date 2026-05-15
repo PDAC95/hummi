@@ -45,7 +45,7 @@ Cross-cutting items (SEC-*, TEST-*, PLAT-*, CMP-*) have a primary home for their
 **Plans**: 7 plans
   - [x] 01-01-PLAN.md — Founder provisions Supabase staging+prod and Sentry org/projects (captures credentials) _(docs shipped 2026-05-15; founder owns Sentry remainder; Supabase block already filled)_
   - [x] 01-02-PLAN.md — Initialize Supabase locally, write + apply initial migration (extensions + schemas) _(applied LIVE to hummi-staging 2026-05-15; INFRA-02/06/07 complete)_
-  - [ ] 01-03-PLAN.md — GitHub Actions workflows (PR checks, deploy-staging, deploy-prod, gitleaks) + secret-grep script
+  - [x] 01-03-PLAN.md — GitHub Actions workflows (PR checks, deploy-staging, deploy-prod, gitleaks) + secret-grep script _(workflows + 2 founder runbooks shipped 2026-05-15; founder owns post-merge GH secrets + main branch ruleset config; INFRA-03/04 + SEC-07 complete)_
   - [ ] 01-04-PLAN.md — Sentry instrumentation for SPA (React 19) and Edge Functions (Deno)
   - [ ] 01-05-PLAN.md — npm audit cleanup (12 vulns) + gitleaks pre-commit hook + history scan
   - [x] 01-06-PLAN.md — Vendor applications: Twilio toll-free, Stripe Canada, Resend domain, CRA HST _(docs shipped 2026-05-15; founder owns 4 submissions)_
@@ -186,7 +186,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 →
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation & Long-Lead Vendors | 3/7 | In Progress|  |
+| 1. Foundation & Long-Lead Vendors | 4/7 | In Progress|  |
 | 2. Auth & Profiles | 0/TBD | Not started | - |
 | 3. Coverage & Properties | 0/TBD | Not started | - |
 | 4. Service Catalog & Pricing Engine | 0/TBD | Not started | - |

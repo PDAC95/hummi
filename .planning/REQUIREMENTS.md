@@ -11,8 +11,8 @@ Cada requisito atómico, testable y centrado en el usuario. Se mapean a fases de
 
 - [ ] **INFRA-01**: Two Supabase projects configured (staging para previews, prod para production)
 - [x] **INFRA-02**: Supabase migrations gestionadas via CLI (zero direct Studio edits en prod)
-- [ ] **INFRA-03**: CI pipeline ejecuta `npm run lint`, `tsc -b`, `vite build`, y `supabase db push --dry-run` en cada PR
-- [ ] **INFRA-04**: CI greppea `VITE_.*SERVICE` y `service_role` en `src/` para prevenir leak de service-role key
+- [x] **INFRA-03**: CI pipeline ejecuta `npm run lint`, `tsc -b`, `vite build`, y `supabase db push --dry-run` en cada PR
+- [x] **INFRA-04**: CI greppea `VITE_.*SERVICE` y `service_role` en `src/` para prevenir leak de service-role key
 - [ ] **INFRA-05**: Gitleaks pre-commit hook + history scan ejecutado una vez antes de launch
 - [x] **INFRA-06**: Postgres extensions habilitadas: `pgcrypto`, `pg_cron`, `pg_net`
 - [x] **INFRA-07**: Schemas `ops` (logs internos) y `stripe` (idempotencia webhook) creados
@@ -209,7 +209,7 @@ Cada requisito atómico, testable y centrado en el usuario. Se mapean a fases de
 - [ ] **SEC-04**: Automated RLS smoke test in CI: log in as User A, assert 0 rows leaked from User B
 - [ ] **SEC-05**: Webhook signature verification on every Stripe Edge Function call
 - [ ] **SEC-06**: Idempotency table `stripe.stripe_events` with PK = `event.id` (`ON CONFLICT DO NOTHING`)
-- [ ] **SEC-07**: Service-role key only in Edge Function secrets + GitHub Actions secrets (never in `src/`)
+- [x] **SEC-07**: Service-role key only in Edge Function secrets + GitHub Actions secrets (never in `src/`)
 - [ ] **SEC-08**: All business-rule writes go through security-definer RPCs (`create_booking`, `cancel_visit`, `start_subscription`, `purchase_package`, `schedule_package_visit`)
 - [ ] **SEC-09**: Sensitive columns (entry notes, lockbox codes) encrypted at rest using `pgcrypto`
 
@@ -311,8 +311,8 @@ Per-REQ-ID mapping to phases. Every v1 requirement maps to exactly one phase. Cr
 |-------------|-------|--------|
 | INFRA-01 | Phase 1 | Pending |
 | INFRA-02 | Phase 1 | Complete |
-| INFRA-03 | Phase 1 | Pending |
-| INFRA-04 | Phase 1 | Pending |
+| INFRA-03 | Phase 1 | Complete |
+| INFRA-04 | Phase 1 | Complete |
 | INFRA-05 | Phase 1 | Pending |
 | INFRA-06 | Phase 1 | Complete |
 | INFRA-07 | Phase 1 | Complete |
@@ -461,7 +461,7 @@ Per-REQ-ID mapping to phases. Every v1 requirement maps to exactly one phase. Cr
 | SEC-04 | Phase 2 (CI test, recurs per migration) | Pending |
 | SEC-05 | Phase 6 (recurs every Stripe Edge Function) | Pending |
 | SEC-06 | Phase 6 (recurs every webhook event type) | Pending |
-| SEC-07 | Phase 1 (foundational guardrail) | Pending |
+| SEC-07 | Phase 1 (foundational guardrail) | Complete |
 | SEC-08 | Phase 6 (policy; recurs every business RPC) | Pending |
 | SEC-09 | Phase 3 (policy; recurs for any sensitive column) | Pending |
 | CMP-01 | Phase 12 | Pending |
