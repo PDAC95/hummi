@@ -10,12 +10,12 @@ Cada requisito atómico, testable y centrado en el usuario. Se mapean a fases de
 ### Foundation & Infrastructure
 
 - [ ] **INFRA-01**: Two Supabase projects configured (staging para previews, prod para production)
-- [ ] **INFRA-02**: Supabase migrations gestionadas via CLI (zero direct Studio edits en prod)
+- [x] **INFRA-02**: Supabase migrations gestionadas via CLI (zero direct Studio edits en prod)
 - [ ] **INFRA-03**: CI pipeline ejecuta `npm run lint`, `tsc -b`, `vite build`, y `supabase db push --dry-run` en cada PR
 - [ ] **INFRA-04**: CI greppea `VITE_.*SERVICE` y `service_role` en `src/` para prevenir leak de service-role key
 - [ ] **INFRA-05**: Gitleaks pre-commit hook + history scan ejecutado una vez antes de launch
-- [ ] **INFRA-06**: Postgres extensions habilitadas: `pgcrypto`, `pg_cron`, `pg_net`
-- [ ] **INFRA-07**: Schemas `ops` (logs internos) y `stripe` (idempotencia webhook) creados
+- [x] **INFRA-06**: Postgres extensions habilitadas: `pgcrypto`, `pg_cron`, `pg_net`
+- [x] **INFRA-07**: Schemas `ops` (logs internos) y `stripe` (idempotencia webhook) creados
 - [ ] **INFRA-08**: Auditoría y resolución de 12 vulnerabilidades de `npm audit` listadas en CONCERNS.md
 - [ ] **INFRA-09**: Sentry conectado (frontend + Edge Functions) con DSN en env vars
 - [ ] **INFRA-10**: Twilio Canadian toll-free number aplicado con CSCA verification (en fase 1, lead time 2–3 semanas)
@@ -310,12 +310,12 @@ Per-REQ-ID mapping to phases. Every v1 requirement maps to exactly one phase. Cr
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | INFRA-01 | Phase 1 | Pending |
-| INFRA-02 | Phase 1 | Pending |
+| INFRA-02 | Phase 1 | Complete |
 | INFRA-03 | Phase 1 | Pending |
 | INFRA-04 | Phase 1 | Pending |
 | INFRA-05 | Phase 1 | Pending |
-| INFRA-06 | Phase 1 | Pending |
-| INFRA-07 | Phase 1 | Pending |
+| INFRA-06 | Phase 1 | Complete |
+| INFRA-07 | Phase 1 | Complete |
 | INFRA-08 | Phase 1 | Pending |
 | INFRA-09 | Phase 1 | Pending |
 | INFRA-10 | Phase 1 | Pending |

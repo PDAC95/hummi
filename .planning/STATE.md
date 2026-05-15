@@ -3,12 +3,12 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: unknown
-last_updated: "2026-05-15T14:30:00.000Z"
+last_updated: "2026-05-15T15:58:16.457Z"
 progress:
   total_phases: 1
   completed_phases: 0
   total_plans: 7
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -23,32 +23,33 @@ See: .planning/PROJECT.md (updated 2026-05-14)
 ## Current Position
 
 Phase: 1 of 12 (Foundation & Long-Lead Vendors)
-Plans complete: 2 of 7 (01-01 docs + 01-06 docs); both await founder action
-Status: In progress — Wave 1 plans (01-01 + 01-06) shipped to PRs; founder must complete account creation + vendor submissions before Wave 2
-Last activity: 2026-05-15 — Plan 01-06 vendor checklists + VENDORS.md tracker shipped (PR #2); plan 01-01 Supabase+Sentry runbooks shipped (PR #1)
+Plans complete: 3 of 7 (01-01 docs + 01-06 docs await founder; 01-02 Supabase init+migration applied LIVE to hummi-staging)
+Status: In progress — Wave 2 started; Plan 01-02 ready to ship to PR. Plan 01-03 (CI guardrails) is the natural next plan in Wave 2
+Last activity: 2026-05-15 — Plan 01-02 initial migration (extensions + ops/stripe schemas) applied to hummi-staging; runbook + supabase/ scaffold committed on phase-01/02-supabase-init-migrations
 
-Progress: [██░░░░░░░░░░] 17% of Phase 1 plans complete; founder actions pending
+Progress: [████░░░░░░░░] 43% of Phase 1 plans complete (3/7)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2 (executor portion only; both await founder action)
-- Average duration: 6 min
-- Total execution time: 0.20 h
+- Total plans completed: 3 (01-01 docs await founder, 01-06 docs await founder, 01-02 fully executed live against staging)
+- Average duration: 11 min
+- Total execution time: 0.55 h
 
 **By Phase:**
 
 | Phase | Plans | Total  | Avg/Plan |
 |-------|-------|--------|----------|
-| 01-foundation-long-lead-vendors | 2/7 | 12 min | 6 min |
+| 01-foundation-long-lead-vendors | 3/7 | 33 min | 11 min |
 
 **Recent Trend:**
-- Last 5 plans: 01-01 (4 min, executor done), 01-06 (8 min, executor done)
-- Trend: Wave 1 baseline established
+- Last 5 plans: 01-01 (4 min, executor done), 01-06 (8 min, executor done), 01-02 (21 min, fully shipped live)
+- Trend: 01-02 was longer because of live verification against staging (link, dry-run, push, two `db dump` validations) — the runbook + Live Verification section in SUMMARY.md justify the time
 
 *Updated after each plan completion*
 | Phase 01-foundation-long-lead-vendors P01 | 4min | 1 tasks | 5 files |
 | Phase 01-foundation-long-lead-vendors P06 | 8min | 1 tasks | 7 files |
+| Phase 01-foundation-long-lead-vendors P02 | 21min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -65,6 +66,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Highlights affecting Pha
 - **01-01:** Capture Sentry project URL slug as a separate field from display name — slugs can get numeric suffixes on collision and `@sentry/vite-plugin` source-map upload silently 404s on mismatch.
 - **Workflow:** Branch-per-plan GitHub Flow (one branch per GSD plan, naming `phase-XX/YY-slug`, one PR per plan, main always green). Documented in `.claude/CLAUDE.md`.
 - **Push protection lesson (2026-05-15):** GitHub Push Protection caught Stripe-shaped placeholders in plan docs. Future placeholders must break the prefix format (e.g., `sk_<test>_PLACEHOLDER`) to avoid false positives.
+- **01-02:** Migration verification pattern: `supabase migration list --linked` (LOCAL+REMOTE both populated) is the source of truth, BUT independently validate via `supabase db dump --schema <name>` to confirm the actual DDL landed — exit code alone is insufficient when CLI shim layers can mangle stderr.
+- **01-02:** Idempotency policy: every CREATE EXTENSION/SCHEMA in migrations must use `IF NOT EXISTS`. Supabase preinstalls pgcrypto on every project; without IF NOT EXISTS the first migration would fail.
+- **01-02:** Belt-and-suspenders gitignore: `supabase init` creates `supabase/.gitignore` with `.temp` + `.branches` entries, but we mirror them in root `.gitignore` so `git clean -fdx` or a stripped supabase/.gitignore can't leak the linked-project ref.
 
 ### Pending Todos
 
@@ -79,13 +83,14 @@ Decisions are logged in PROJECT.md Key Decisions table. Highlights affecting Pha
 
 - External lead-times (Twilio CSCA, Stripe CA banking, Resend warmup, CRA HST) gate Phase 6 — must start in Phase 1 or Phase 6 slips
 - Brownfield bundle is 1.4MB JS / 856KB CSS; route-based code splitting required before Phase 7 to keep customer bundle < 1MB gz
-- **Active: Plan 01-01 founder checkpoint** — founder must execute Supabase + Sentry runbooks and fill `account-credentials.md`. Plan 01-02 (Supabase init+migration) and plan 01-04 (Sentry SPA+Edge integration) both depend on real values from this file.
+- **Active: Plan 01-01 founder checkpoint** — founder must still execute the Sentry runbook and fill remaining Sentry placeholders in `account-credentials.md` (Supabase block is already filled; the staging push in 01-02 confirmed those values work). Plan 01-04 (Sentry integration) depends on the Sentry block being non-`__FILL_IN__`.
 
 ## Session Continuity
 
-Last session: 2026-05-15 (Wave 1 execution — plans 01-01 and 01-06)
-Stopped at: Both Wave 1 plans shipped to PRs (#1 and #2); awaiting founder to (a) merge PRs, (b) execute Supabase+Sentry runbooks, (c) start vendor applications. Plans 01-02 and 01-03 are next (Wave 2) once 01-01 is merged + Supabase staging/prod exist.
+Last session: 2026-05-15 (Wave 2 started — plan 01-02 executed live)
+Stopped at: Plan 01-02 done locally on `phase-01/02-supabase-init-migrations`; orchestrator owns push + PR open. Migration is already live on hummi-staging. Plan 01-03 (CI guardrails — including `supabase db push --dry-run` PR check + `deploy-prod.yml` workflow) is the natural next plan in Wave 2.
 Resume files:
-- `.planning/phases/01-foundation-long-lead-vendors/account-credentials.md` (founder fills)
-- `.planning/VENDORS.md` (founder updates as applications progress)
-Next step: After founder completes account creation, run plan 01-02 (Supabase init + first migration) on branch `phase-01/02-supabase-init-migrations`.
+- `.planning/phases/01-foundation-long-lead-vendors/01-02-SUMMARY.md` (live verification details + decisions)
+- `.planning/phases/01-foundation-long-lead-vendors/migration-runbook.md` (founder workflow + CI handoff for 01-03)
+- `.planning/phases/01-foundation-long-lead-vendors/account-credentials.md` (Supabase block ready, Sentry block still `__FILL_IN__`)
+Next step: Orchestrator pushes branch + opens PR for 01-02. After merge, kick off plan 01-03 (CI guardrails) on branch `phase-01/03-ci-guardrails`.
