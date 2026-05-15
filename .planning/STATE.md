@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-05-14)
 ## Current Position
 
 Phase: 1 of 12 (Foundation & Long-Lead Vendors)
-Plan: 0 of TBD in current phase
-Status: Ready to plan
-Last activity: 2026-05-14 — Roadmap created from REQUIREMENTS.md (145 v1 reqs) + research synthesis
+Plan: 1 of 7 in current phase (executor work complete; founder action pending before 01-02)
+Status: In progress
+Last activity: 2026-05-15 — Plan 01-01 executor work done (template + runbooks committed); founder must run runbooks to fill account-credentials.md before plan 01-02
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [█░░░░░░░░░] 1%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 0
-- Average duration: —
-- Total execution time: 0 h
+- Total plans completed: 1 (executor portion; 01-01 awaits founder action to fully close)
+- Average duration: 4 min
+- Total execution time: 0.07 h
 
 **By Phase:**
 
-| Phase | Plans | Total | Avg/Plan |
-|-------|-------|-------|----------|
-| — | — | — | — |
+| Phase | Plans | Total  | Avg/Plan |
+|-------|-------|--------|----------|
+| 01    | 1/7   | 4 min  | 4 min    |
 
 **Recent Trend:**
-- Last 5 plans: —
-- Trend: —
+- Last 5 plans: 01-01 (4 min, executor done, founder pending)
+- Trend: starting
 
 *Updated after each plan completion*
 
@@ -46,6 +46,8 @@ Decisions are logged in PROJECT.md Key Decisions table. Highlights affecting Pha
 - Long-lead vendor work kicked off immediately: Twilio toll-free (2–3 wk), Stripe Canadian bank verification, Resend SPF/DKIM/DMARC warmup (1–2 wk), CRA HST registration
 - Admin role lives only in `app_metadata`, never `user_metadata` (security-critical)
 - Stripe Tax with `txcd_20030000` + `tax_behavior: "exclusive"` from day one
+- **01-01:** Phase-local credentials pattern — gitignored `account-credentials.md` per phase via wildcard `.planning/phases/*/account-credentials.md`, paired with committable `runbook-<vendor>-setup.md` files (zero secrets in git). Future phases that capture vendor secrets reuse this layout.
+- **01-01:** Capture Sentry project URL slug as a separate field from display name — slugs can get numeric suffixes on collision and `@sentry/vite-plugin` source-map upload silently 404s on mismatch.
 
 ### Pending Todos
 
@@ -59,9 +61,10 @@ None yet.
 
 - External lead-times (Twilio CSCA, Stripe CA banking, Resend warmup, CRA HST) gate Phase 6 — must start in Phase 1 or Phase 6 slips
 - Brownfield bundle is 1.4MB JS / 856KB CSS; route-based code splitting required before Phase 7 to keep customer bundle < 1MB gz
+- **Active: Plan 01-01 founder checkpoint** — founder must execute runbook-supabase-setup.md and runbook-sentry-setup.md and fill .planning/phases/01-foundation-long-lead-vendors/account-credentials.md (gitignored). Plan 01-02 cannot start until zero __FILL_IN__ placeholders remain in that file.
 
 ## Session Continuity
 
-Last session: 2026-05-14 (roadmap creation)
-Stopped at: ROADMAP.md + STATE.md written, REQUIREMENTS.md traceability updated
-Resume file: None — next step is `/gsd:plan-phase 1`
+Last session: 2026-05-15 (plan 01-01 executor work)
+Stopped at: Completed 01-01-PLAN.md executor portion; account-credentials.md template + Supabase + Sentry runbooks committed on branch phase-01/01-supabase-sentry-accounts; awaiting founder to execute runbooks and fill credentials
+Resume file: .planning/phases/01-foundation-long-lead-vendors/account-credentials.md — founder fills, then plan 01-02
