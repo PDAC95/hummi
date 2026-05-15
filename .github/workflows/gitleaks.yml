@@ -1,0 +1,30 @@
+name: Gitleaks
+# Full-history secret scan. Runs on every PR and every push to main.
+# Complements scripts/secret-leak-grep.sh (which is fast + targeted at src/);
+# gitleaks looks at the entire repo + history with a much broader rule set.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  # gitleaks-action posts PR comments + check annotations
+  pull-requests: write
+
+jobs:
+  scan:
+    name: Gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # gitleaks needs full history to scan past commits.
+          fetch-depth: 0
+
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE not required for personal-account public repos.

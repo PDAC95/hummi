@@ -1,0 +1,85 @@
+name: PR Checks
+# The 5 required checks for every PR to main (INFRA-03 / INFRA-04 / INFRA-08 / SEC-07).
+# All must pass before merge is allowed (enforced by branch protection on main).
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint-typecheck-build:
+    name: Lint + Typecheck + Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run lint
+
+      - run: npx tsc -b
+
+      - name: Build (vite)
+        run: npm run build
+        env:
+          # Build-time placeholders so vite doesn't error on missing env vars.
+          # Real values live in GH Actions secrets / Supabase Edge env / .env.local.
+          VITE_SUPABASE_URL: https://placeholder.supabase.co
+          VITE_SUPABASE_PUBLISHABLE_KEY: sb_publishable_placeholder
+          VITE_STRIPE_PUBLISHABLE_KEY: pk_test_placeholder
+          VITE_SENTRY_DSN: ''
+
+  secret-leak-grep:
+    name: Secret Leak Grep (INFRA-04 / SEC-07)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run shared secret-leak grep
+        # Same script that pre-commit hook uses (Plan 01-05).
+        # Ubuntu runners ship with ripgrep preinstalled.
+        run: bash scripts/secret-leak-grep.sh
+
+  supabase-dry-run:
+    name: Supabase Migration Dry-Run (INFRA-03)
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.STAGING_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.84.5
+
+      - name: Link to staging project
+        run: supabase link --project-ref ${{ secrets.STAGING_PROJECT_ID }}
+
+      - name: Dry-run migration push against staging
+        run: supabase db push --linked --dry-run
+
+  npm-audit:
+    name: npm audit (INFRA-08)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: npm audit (high+critical only)
+        run: npm audit --audit-level=high

@@ -1,0 +1,45 @@
+name: Deploy migrations to prod
+# Triggers on push to main when supabase/migrations/** changes. Runs a
+# dry-run first (catches obvious schema errors), then applies the migration
+# to hummi-prod via `supabase db push --linked`.
+#
+# This is the single automated path to prod for schema changes — direct
+# Studio edits in prod are forbidden by INFRA-02.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/migrations/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  # Serialize prod deploys — never run two at once even if PRs merge fast.
+  group: deploy-prod
+  cancel-in-progress: false
+
+jobs:
+  deploy-prod:
+    name: Deploy to hummi-prod
+    runs-on: ubuntu-latest
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.PRODUCTION_DB_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v1
+        with:
+          version: 2.84.5
+
+      - name: Link to prod project
+        run: supabase link --project-ref ${{ secrets.PRODUCTION_PROJECT_ID }}
+
+      - name: Dry-run prod migration push
+        run: supabase db push --linked --dry-run
+
+      - name: Apply prod migration
+        run: supabase db push --linked
